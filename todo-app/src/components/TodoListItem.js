@@ -21,8 +21,10 @@ const TodoListItem = ({ todo, onRemove, onToggle, onToggleUpdate, onUpdateState 
   },[]);
 
   const onSubmit = useCallback( e => {
-    onUpdateState(id, value);
-    setValue('');
+    if(value !== ''){
+      onUpdateState(id, value);
+      setValue('');
+    }
     e.preventDefault();
   },
   [onUpdateState, value]
