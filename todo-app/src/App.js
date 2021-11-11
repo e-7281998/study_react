@@ -10,34 +10,38 @@ const App = () => {
       id: 1,
       text: '리액트 기초',
       checked: true,
+      update: true,
     },
     {
       id: 2,
       text: '컴포넌트 스타일링',
       checked: true,
+      update: false,
     },
     {
       id: 3,
       text: '라우팅',
       checked: false,
+      update: false,
     },
   ]);
 
   const nextId = useRef(4);
-
+//TodoInsert
   const onInsert = useCallback(
     text => {
       const todo = {
         id: nextId.current,
         text,
         checked: false,
+        update: false,
       };
       setTodos(todos.concat(todo));
       nextId.current += 1;  //nextId에 1씩 더하기
     },
     [todos]
   );
-
+//TodoList
   const onRemove = useCallback(
     id => {
       setTodos(todos.filter( todo => todo.id !== id ));
@@ -60,10 +64,33 @@ const App = () => {
     [todos]
   );
 
+  const onToggleUpdate = useCallback(
+    id => {
+      setTodos(
+        todos.map(todo =>
+          todo.id === id ? { ...todo, update : !todo.update } : todo
+        ),
+      );
+    },
+    [todos]
+  );
+
+  const onUpdateState = useCallback(
+    (id, value) => {
+      setTodos(
+        todos.map(todo =>
+        todo.id === id ? {...todo, text : value, update: false} : todo
+        ),
+      );
+    },
+    [todos]
+  );
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert}/>
-      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}
+        onToggleUpdate={onToggleUpdate} onUpdateState={onUpdateState}/>
     </TodoTemplate>
   );
 };
