@@ -12,9 +12,10 @@ const TodoInsert = ({ onInsert }) => {
 
   const onSubmit = useCallback(
     e => {
-      onInsert(value);
-      setValue('');
-
+      if(value !== ''){
+        onInsert(value);
+        setValue('');
+      }
       //submit 이벤트는 브라우저에서 새로고침을 발생시킴, 이를 방지
       e.preventDefault();
     },
