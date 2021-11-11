@@ -10,12 +10,16 @@ import {
 import cn from 'classnames';
 import './scss/TodoListItem.scss';
 
+<<<<<<< HEAD
 const TodoListItem = ({ todo, onRemove, onToggle, onToggleUpdate, onUpdateState }) => {
 
   const { id, text, checked, update } = todo;
 
   //수정
   const [ value, setValue ] = useState ('');
+=======
+const TodoListItem = ({ todo, onRemove, onToggle }) => {
+>>>>>>> 66c1e3d16f1ec26e5df83031e699d42b683d35a4
 
   const onChange = useCallback( e => {
     setValue(e.target.value);

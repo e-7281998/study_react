@@ -64,6 +64,7 @@ const App = () => {
     [todos]
   );
 
+<<<<<<< HEAD
   const onToggleUpdate = useCallback(
     id => {
       setTodos(
@@ -91,6 +92,12 @@ const App = () => {
       <TodoInsert onInsert={onInsert}/>
       <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}
         onToggleUpdate={onToggleUpdate} onUpdateState={onUpdateState}/>
+=======
+  return (
+    <TodoTemplate>
+      <TodoInsert onInsert={onInsert}/>
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+>>>>>>> 66c1e3d16f1ec26e5df83031e699d42b683d35a4
     </TodoTemplate>
   );
 };
