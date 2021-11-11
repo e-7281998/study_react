@@ -45,10 +45,25 @@ const App = () => {
     [todos]
   );
 
+  const onToggle = useCallback(
+    id => {
+      setTodos(
+        todos.map(todo =>
+          // 배열 하나하나 돌면서 id값을 비교해라.
+          // 지금 선택된 id와 값이 같다면 앞의 배열들은 그대로 두고,
+          // checked 상태를 반대로 해라.
+          // id 값이 같다면 그대로 둬라
+          todo.id === id ? { ...todo, checked : !todo.checked } : todo
+        ),
+      );
+    },
+    [todos]
+  );
+
   return (
     <TodoTemplate>
       <TodoInsert onInsert={onInsert}/>
-      <TodoList todos={todos} onRemove={onRemove} />
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
     </TodoTemplate>
   );
 };
