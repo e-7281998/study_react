@@ -5,28 +5,22 @@ import TodoList from './components/TodoList';
 
 const App = () => {
 
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: '리액트 기초',
-      checked: true,
-      update: true,
-    },
-    {
-      id: 2,
-      text: '컴포넌트 스타일링',
-      checked: true,
-      update: false,
-    },
-    {
-      id: 3,
-      text: '라우팅',
-      checked: false,
-      update: false,
-    },
-  ]);
+  function createBulkTodos() {
+    const array = [];
+    for(let i=1; i< 2500; i++){
+      array.push({
+        id: i,
+        text: `할 일 ${i}`,
+        checked: false,
+        update: false,
+      });
+    }
+    return array;
+  }
 
-  const nextId = useRef(4);
+  const [todos, setTodos] = useState(createBulkTodos);
+
+  const nextId = useRef(2501);
 //TodoInsert
   const onInsert = useCallback(
     text => {
@@ -36,54 +30,55 @@ const App = () => {
         checked: false,
         update: false,
       };
-      setTodos(todos.concat(todo));
+      setTodos(todos => todos.concat(todo));
       nextId.current += 1;  //nextId에 1씩 더하기
     },
-    [todos]
+  []
   );
 //TodoList
   const onRemove = useCallback(
     id => {
-      setTodos(todos.filter( todo => todo.id !== id ));
+      setTodos(todo => todos.filter(todo.id !== id));
     },
-    [todos]
+    []
   );
 
   const onToggle = useCallback(
     id => {
-      setTodos(
+      setTodos( todos =>
         todos.map(todo =>
           // 배열 하나하나 돌면서 id값을 비교해라.
           // 지금 선택된 id와 값이 같다면 앞의 배열들은 그대로 두고,
           // checked 상태를 반대로 해라.
           // id 값이 같다면 그대로 둬라
+
           todo.id === id ? { ...todo, checked : !todo.checked } : todo
         ),
       );
     },
-    [todos]
+    []
   );
 
   const onToggleUpdate = useCallback(
     id => {
-      setTodos(
+      setTodos( todos =>
         todos.map(todo =>
           todo.id === id ? { ...todo, update : !todo.update } : todo
         ),
       );
     },
-    [todos]
+    []
   );
 
   const onUpdateState = useCallback(
     (id, value) => {
-      setTodos(
+      setTodos( todos =>
         todos.map(todo =>
         todo.id === id ? {...todo, text : value, update: false} : todo
         ),
       );
     },
-    [todos]
+    []
   );
 
   return (
