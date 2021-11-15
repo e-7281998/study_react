@@ -38,7 +38,7 @@ const App = () => {
 //TodoList
   const onRemove = useCallback(
     id => {
-      setTodos(todo => todos.filter(todo.id !== id));
+      setTodos(todos => todos.filter( todo => todo.id !== id));
     },
     []
   );
