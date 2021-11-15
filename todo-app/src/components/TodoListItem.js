@@ -10,7 +10,7 @@ import {
 import cn from 'classnames';
 import './scss/TodoListItem.scss';
 
-const TodoListItem = ({ todo, onRemove, onToggle, onToggleUpdate, onUpdateState }) => {
+const TodoListItem = ({ todo, style, onRemove, onToggle, onToggleUpdate, onUpdateState }) => {
 
   const { id, text, checked, update } = todo;
 
@@ -31,27 +31,32 @@ const TodoListItem = ({ todo, onRemove, onToggle, onToggleUpdate, onUpdateState 
 );
 
   return (
-    <div className="TodoListItem">
-      <div className={cn('checkBox', {checked})} onClick={() => onToggle(id)}>
-        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-        <div className="text">{text}</div>
-      </div>
-      <form className={ update ? cn('updateBoxShow') : cn('updateBox')} onSubmit={onSubmit}>
-        <input
-          placeholder={text}
-          onChange={onChange}
-          value={value}
-        />
-        <button className="updateBtn" type="submit">수정</button>
-      </form>
-      <div className="update" onClick={() => onToggleUpdate(id)}>
-        <BsPencilFill />
-      </div>
-      <div className="remove" onClick={() => onRemove(id)}>
-        <MdRemoveCircleOutline />
+    <div className="TodoListItem-virtualized" style={style}>
+      <div className="TodoListItem" >
+        <div className={cn('checkBox', {checked})} onClick={() => onToggle(id)}>
+          {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+          <div className="text">{text}</div>
+        </div>
+        <form className={ update ? cn('updateBoxShow') : cn('updateBox')} onSubmit={onSubmit}>
+          <input
+            placeholder={text}
+            onChange={onChange}
+            value={value}
+          />
+          <button className="updateBtn" type="submit">수정</button>
+        </form>
+        <div className="update" onClick={() => onToggleUpdate(id)}>
+          <BsPencilFill />
+        </div>
+        <div className="remove" onClick={() => onRemove(id)}>
+          <MdRemoveCircleOutline />
+        </div>
       </div>
     </div>
   );
 };
 
-export default React.memo(TodoListItem);
+export default React.memo(
+  TodoListItem,
+  (prevProps, nextProps) => prevProps.todo === nextProps.todo,
+);
