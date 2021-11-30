@@ -1,17 +1,23 @@
-import React, { useState, useCallback } from 'react';
-import NewsList from './components/NewsList';
-import Categories from './components/Categories';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import NewsPage from './pages/Newspage';
 
 const App = () => {
-  const [ category, setCategory ] = useState('all');
-  const onSelect = useCallback(category => setCategory(category), []);
-
-  return (
-    <>
-      <Categories category={category} onSelect={onSelect} />
-      <NewsList category={category} />;
-    </>
-  )
+  return(
+    <Routes>
+      <Route path="/" element={<NewsPage/>}>
+        <Route path=":category" element={<NewsPage/>} />
+      </Route>
+      <Route
+        path="*"
+        element={
+          <div>
+            <p>존재하지 않는 페이지 입니다.</p>
+          </div>
+        }
+        />
+    </Routes>
+  );
 };
 
 export default App;
