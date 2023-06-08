@@ -1,8 +1,8 @@
 import "./App.css";
-import Clusterer from "./components/Clusterer";
+import Map from "./components/Map";
 
 function App() {
-  return <Clusterer />;
+  return <Map />;
 }
 
 export default App;
