@@ -5,7 +5,7 @@ import axios from "axios";
 
 const { kakao } = window;
 
-function Chicken(props) {
+function Clusterer(props) {
   useEffect(() => {
     var map = new kakao.maps.Map(document.getElementById("map"), {
       // 지도를 표시할 div
@@ -32,4 +32,4 @@ function Chicken(props) {
   return <div id="map"></div>;
 }
 
-export default Chicken;
+export default Clusterer;

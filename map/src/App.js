@@ -1,8 +1,8 @@
 import "./App.css";
-import Chicken from "./components/Chicken";
+import Clusterer from "./components/Clusterer";
 
 function App() {
-  return <Chicken />;
+  return <Clusterer />;
 }
 
 export default App;
