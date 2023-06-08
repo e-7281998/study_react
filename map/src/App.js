@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Map from "./components/Map";
+import Chicken from "./components/Chicken";
 
 function App() {
-  return <Map />;
+  return <Chicken />;
 }
 
 export default App;
