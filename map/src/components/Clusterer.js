@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Course from "../location/course.json";
 import CourseNode from "../location/courseNode.json";
 =======
 import Positions from "../location/chicken.json";
 >>>>>>> temp
+=======
+import Course from "../location/course.json";
+import CourseNode from "../location/courseNode.json";
+>>>>>>> fd0b6f2 ([코스와 노드]파일 두 개로 읽고, 선 연결되는지 테스트)
 import "../css/map.css";
 import axios from "axios";
 
@@ -26,18 +31,27 @@ function Clusterer(props) {
     });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     var linePath = [];
 
     var course = Course.positions.map((position, i) => {
 =======
     var markers = Positions.positions.map((position, i) => {
 >>>>>>> temp
+=======
+    var linePath = [];
+
+    var course = Course.positions.map((position, i) => {
+>>>>>>> fd0b6f2 ([코스와 노드]파일 두 개로 읽고, 선 연결되는지 테스트)
       return new kakao.maps.Marker({
         position: new kakao.maps.LatLng(position.lat, position.lng),
       });
     });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fd0b6f2 ([코스와 노드]파일 두 개로 읽고, 선 연결되는지 테스트)
     var courseNode = CourseNode.positions.map((position, i) => {
       var coordinate = new kakao.maps.LatLng(position.lat, position.lng);
       linePath.push(coordinate);
@@ -59,9 +73,12 @@ function Clusterer(props) {
 
     clusterer.addMarkers(course);
     clusterer.addMarkers(courseNode);
+<<<<<<< HEAD
 =======
     clusterer.addMarkers(markers);
 >>>>>>> temp
+=======
+>>>>>>> fd0b6f2 ([코스와 노드]파일 두 개로 읽고, 선 연결되는지 테스트)
   }, []);
 
   return <div id="map"></div>;
