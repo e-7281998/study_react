@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import Positions from "../location/chicken.json";
+import Course from "../location/course.json";
+import CourseNode from "../location/courseNode.json";
 import "../css/map.css";
 import axios from "axios";
 
@@ -20,13 +21,35 @@ function Clusterer(props) {
       minLevel: 10, // 클러스터 할 최소 지도 레벨
     });
 
-    var markers = Positions.positions.map((position, i) => {
+    var linePath = [];
+
+    var course = Course.positions.map((position, i) => {
       return new kakao.maps.Marker({
         position: new kakao.maps.LatLng(position.lat, position.lng),
       });
     });
 
-    clusterer.addMarkers(markers);
+    var courseNode = CourseNode.positions.map((position, i) => {
+      var coordinate = new kakao.maps.LatLng(position.lat, position.lng);
+      linePath.push(coordinate);
+      return new kakao.maps.Marker({
+        position: coordinate,
+      });
+    });
+
+    // 지도에 표시할 선을 생성합니다
+    var polyline = new kakao.maps.Polyline({
+      path: linePath, // 선을 구성하는 좌표배열 입니다
+      strokeWeight: 5, // 선의 두께 입니다
+      strokeColor: "#FFAE00", // 선의 색깔입니다
+      strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+      strokeStyle: "solid", // 선의 스타일입니다
+    });
+
+    polyline.setMap(map);
+
+    clusterer.addMarkers(course);
+    clusterer.addMarkers(courseNode);
   }, []);
 
   return <div id="map"></div>;
