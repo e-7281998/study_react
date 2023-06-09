@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../css/map.css";
 import marker_A from "../img/marker_A.png";
+<<<<<<< HEAD
 import Clusterer from "./Clusterer";
+=======
+>>>>>>> temp
 
 const { kakao } = window;
 
@@ -26,8 +29,11 @@ function Map(props) {
     }
     // 마커가 표시될 위치입니다
     var markerPosition = new kakao.maps.LatLng(latitude, longitude);
+<<<<<<< HEAD
     console.log(latitude);
     console.log(longitude);
+=======
+>>>>>>> temp
 
     const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
     const options = {
@@ -49,13 +55,19 @@ function Map(props) {
     // **
     const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
+<<<<<<< HEAD
     var content = "<Clusterer/>";
 
+=======
+>>>>>>> temp
     // 마커를 생성합니다
     var marker = new kakao.maps.Marker({
       position: markerPosition,
       image: markerImage, //마커이미지 추가
+<<<<<<< HEAD
       content: content,
+=======
+>>>>>>> temp
     });
 
     // 마커가 지도 위에 표시되도록 설정합니다
