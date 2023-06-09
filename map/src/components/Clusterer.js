@@ -25,19 +25,14 @@ function Clusterer(props) {
       minLevel: 10, // 클러스터 할 최소 지도 레벨
     });
 
-<<<<<<< HEAD
     var linePath = [];
 
     var course = Course.positions.map((position, i) => {
-=======
-    var markers = Positions.positions.map((position, i) => {
->>>>>>> temp
       return new kakao.maps.Marker({
         position: new kakao.maps.LatLng(position.lat, position.lng),
       });
     });
 
-<<<<<<< HEAD
     var courseNode = CourseNode.positions.map((position, i) => {
       var coordinate = new kakao.maps.LatLng(position.lat, position.lng);
       linePath.push(coordinate);
@@ -59,9 +54,6 @@ function Clusterer(props) {
 
     clusterer.addMarkers(course);
     clusterer.addMarkers(courseNode);
-=======
-    clusterer.addMarkers(markers);
->>>>>>> temp
   }, []);
 
   return <div id="map"></div>;
